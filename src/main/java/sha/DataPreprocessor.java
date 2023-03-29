@@ -44,8 +44,8 @@ public class DataPreprocessor {
     long[][] result = new long[p.length() / 128][16];
     for (int i = 0; i < p.length() / 128; i++) {
       for (int j = 0; j < 16; j++) {
-        result[i][j] = Long.parseLong(p.substring(i * 4 + j * 4, i * 4 + j * 4 + 8), 16);
-        System.out.println(result[i][j]);
+        result[i][j] = Long.parseLong(p.substring(i * 4 + j * 8, i * 4 + j * 8 + 8), 16);
+        // System.out.println(result[i][j]);
       }
     }
     return result;

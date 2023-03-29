@@ -10,8 +10,16 @@ public class SecureHashingAlgorithm1 {
 
   public String hash(String message) {
     // Initial hash-values
-    long H0 = 0x67452301, H1 = 0xefcdab89, H2 = 0x98badcfe, H3 = 0x10325476, H4 = 0xc3d2e1f0;
-    long[] intermediateHashes = new long[5];
+    long H0 = Long.parseLong("67452301", 16);
+    long H1 = Long.parseLong("efcdab89", 16);
+    long H2 = Long.parseLong("98badcfe", 16);
+    long H3 = Long.parseLong("10325476", 16);
+    long H4 = Long.parseLong("c3d2e1f0", 16);
+    System.out.println(Long.toHexString(H0));
+    System.out.println(Long.toHexString(H1));
+    System.out.println(Long.toHexString(H2));
+    System.out.println(Long.toHexString(H3));
+    System.out.println(Long.toHexString(H4));
 
     // Working variables
     long a, b, c, d, e, T;
@@ -22,39 +30,27 @@ public class SecureHashingAlgorithm1 {
       for (int t = 0; t < 80; t++) {
         if (t <= 15) {
           w[t] = parsedMessage[i][t];
-          System.out.println(Long.toHexString(w[t]));
+          System.out.println("W(" + t + "): " + Long.toHexString(w[t]));
         } else {
           w[t] = rotateLeft(1, (w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16]));
-          System.out.println(w[t]);
         }
       }
       // 11 0000 1110 0010 1100 0111
-      a = (long) (H0 % Math.pow(2, 32));
-      b = (long) (H1 % Math.pow(2, 32));
-      c = (long) (H2 % Math.pow(2, 32));
-      d = (long) (H3 % Math.pow(2, 32));
-      e = (long) (H4 % Math.pow(2, 32));
+
+      a = H0;
+      b = H1;
+      c = H2;
+      d = H3;
+      e = H4;
+
       for (int t = 0; t < 80; t++) {
+
         T = (long) ((rotateLeft(5, a) + f(b, c, d, t) + e + k(t) + w[t]) % Math.pow(2, 32));
         e = d;
         d = c;
-        c = (long) (rotateLeft(30, b) % Math.pow(2, 32));
+        c = rotateLeft(30, b);
         b = a;
         a = T;
-
-        System.out.println(
-            "t = "
-                + t
-                + " "
-                + Long.toHexString(a)
-                + " "
-                + Long.toHexString(b)
-                + " "
-                + Long.toHexString(c)
-                + " "
-                + Long.toHexString(d)
-                + " "
-                + Long.toHexString(e));
       }
 
       H0 = (long) ((a + H0) % Math.pow(2, 32));
@@ -102,7 +98,16 @@ public class SecureHashingAlgorithm1 {
    * @return long for rotating binary values to the left, x being w-bit
    */
   public long rotateLeft(int num, long x) {
-    return (x << num) | (x >> (32 - num));
+    String intermediate = Long.toBinaryString(x);
+    String result = "";
+    if (intermediate.length() != 32) {
+      while (intermediate.length() != 32) {
+        intermediate = "0" + intermediate;
+      }
+    }
+    result = intermediate.substring(num, 32) + intermediate.substring(0, num);
+    x = Long.parseLong(result, 2);
+    return x;
   }
   /**
    * Method Ch(x,y,z) for 0 <= t <= 19

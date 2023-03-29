@@ -13,7 +13,7 @@ sudo apt install maven
 
 Java install:
 
-```bs
+```sh
 sudo apt install default-jdk
 ```
 
@@ -21,16 +21,39 @@ sudo apt install default-jdk
 
 For execution first:
 
-```bs
+```sh
 mvn compile
 ```
 
-Further commands coming soon
+Run the console interface:
+
+```sh
+mvn exec:java -Dexec.mainClass="sha.MainExec"
+```
 
 ## Testing
 
 For testing with the tesing file, please use:
 
-```bs
+```sh
 mvn test
 ```
+
+## Guide on Using:
+
+After compiling and Executing using the commands in the Execution section, the user should be asked to input numbers as follows:
+
+```sh
+Please enter a string you want to hash!
+```
+
+On the next line the user should input a random String, as e.g.
+
+```sh
+Please enter a string you want to hash!
+abc
+```
+
+Next, the program will calculate the hash. And output it in the console.
+
+

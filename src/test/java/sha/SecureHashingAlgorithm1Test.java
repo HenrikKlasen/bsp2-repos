@@ -18,7 +18,7 @@ public class SecureHashingAlgorithm1Test {
   @Test
   @DisplayName("Secure Hashing testRun")
   public void testSecureHashing() {
-    assertEquals("a9993e36 4706816a ba3e2571 780c26c 9cd0d89d", sha1.hash("abc"));
+    assertEquals("a9993e36 4706816a ba3e2571 7850c26c 9cd0d89d", sha1.hash("abc"));
   }
 
   @Test
