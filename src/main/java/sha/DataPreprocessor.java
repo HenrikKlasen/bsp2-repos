@@ -15,9 +15,7 @@ public class DataPreprocessor {
     for (int i = 0; i < message.length(); i++) {
       result += Long.toString((long) message.charAt(i), 16);
     }
-
     result += 8;
-    System.out.println(result);
     while (((result.length() + 16) % 128) != 0) {
       result += 0;
     }
@@ -26,7 +24,6 @@ public class DataPreprocessor {
       appender = 0 + appender;
     }
     result += appender;
-    System.out.println(result);
     return result;
   }
   /**
@@ -44,7 +41,7 @@ public class DataPreprocessor {
     long[][] result = new long[p.length() / 128][16];
     for (int i = 0; i < p.length() / 128; i++) {
       for (int j = 0; j < 16; j++) {
-        result[i][j] = Long.parseLong(p.substring(i * 4 + j * 8, i * 4 + j * 8 + 8), 16);
+        result[i][j] = Long.parseLong(p.substring(i * 128 + j * 8, i * 128 + j * 8 + 8), 16);
         // System.out.println(result[i][j]);
       }
     }

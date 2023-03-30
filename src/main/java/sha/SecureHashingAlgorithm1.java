@@ -15,11 +15,6 @@ public class SecureHashingAlgorithm1 {
     long H2 = Long.parseLong("98badcfe", 16);
     long H3 = Long.parseLong("10325476", 16);
     long H4 = Long.parseLong("c3d2e1f0", 16);
-    System.out.println(Long.toHexString(H0));
-    System.out.println(Long.toHexString(H1));
-    System.out.println(Long.toHexString(H2));
-    System.out.println(Long.toHexString(H3));
-    System.out.println(Long.toHexString(H4));
 
     // Working variables
     long a, b, c, d, e, T;
@@ -30,11 +25,11 @@ public class SecureHashingAlgorithm1 {
       for (int t = 0; t < 80; t++) {
         if (t <= 15) {
           w[t] = parsedMessage[i][t];
-          System.out.println("W(" + t + "): " + Long.toHexString(w[t]));
         } else {
           w[t] = rotateLeft(1, (w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16]));
         }
       }
+
       // 11 0000 1110 0010 1100 0111
 
       a = H0;
@@ -100,11 +95,11 @@ public class SecureHashingAlgorithm1 {
   public long rotateLeft(int num, long x) {
     String intermediate = Long.toBinaryString(x);
     String result = "";
-    if (intermediate.length() != 32) {
-      while (intermediate.length() != 32) {
-        intermediate = "0" + intermediate;
-      }
+
+    while (intermediate.length() < 32) {
+      intermediate = "0" + intermediate;
     }
+
     result = intermediate.substring(num, 32) + intermediate.substring(0, num);
     x = Long.parseLong(result, 2);
     return x;
