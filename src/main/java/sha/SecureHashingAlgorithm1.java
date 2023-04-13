@@ -16,12 +16,6 @@ public class SecureHashingAlgorithm1 {
     long H3 = Long.parseLong("10325476", 16);
     long H4 = Long.parseLong("c3d2e1f0", 16);
 
-    long HI0 = 0;
-    long HI1 = 0;
-    long HI2 = 0;
-    long HI3 = 0;
-    long HI4 = 0;
-
     // Working variables
     long a, b, c, d, e, T;
     DataPreprocessor dataPreprocessor = new DataPreprocessor();
@@ -54,19 +48,6 @@ public class SecureHashingAlgorithm1 {
         c = rotateLeft(30, b);
         b = a;
         a = T;
-        System.out.println(
-            "t = "
-                + t
-                + " \t"
-                + Long.toHexString(a)
-                + " \t"
-                + Long.toHexString(b)
-                + " \t"
-                + Long.toHexString(c)
-                + " \t"
-                + Long.toHexString(d)
-                + " \t"
-                + Long.toHexString(e));
       }
 
       H0 = (long) ((a + H0) % Math.pow(2, 32));
@@ -132,7 +113,6 @@ public class SecureHashingAlgorithm1 {
 
     result = intermediate.substring(num, 32) + intermediate.substring(0, num);
     x = Long.parseLong(result, 2);
-    System.out.println(Long.toHexString(x));
     return (long) (x % Math.pow(2, 32));
   }
   /**

@@ -43,17 +43,24 @@ mvn test
 
 After compiling and Executing using the commands in the Execution section, the user should be asked to input numbers as follows:
 
-```sh
+```text
 Please enter a string you want to hash!
 ```
 
 On the next line the user should input a random String, as e.g.
 
-```sh
+```text
 Please enter a string you want to hash!
 abc
 ```
 
 Next, the program will calculate the hash. And output it in the console.
 
+## Functions
 
+The program has following functions:
+
+- single block message digest generation
+- multi block message digest generation
+
+The functions inside the program are strictly oriented to have the same naming and function as the documentation suggests.
