@@ -30,7 +30,7 @@ public class DataPreprocessor {
    * This parses the message into an two dimensional array of
    *
    * @param message
-   * @return
+   * @return a two dimensional array.
    */
   public long[][] parseMessage(String message) {
     String p = paddedMessage(message);

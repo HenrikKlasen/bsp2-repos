@@ -30,8 +30,6 @@ public class SecureHashingAlgorithm1 {
         }
       }
 
-      // 11 0000 1110 0010 1100 0111
-
       a = H0;
       b = H1;
       c = H2;
@@ -39,9 +37,6 @@ public class SecureHashingAlgorithm1 {
       e = H4;
 
       for (int t = 0; t < 80; t++) {
-        /*
-         * NOTE: Error
-         */
         T = calcT(a, b, c, d, e, t, w);
         e = d;
         d = c;
